@@ -17,15 +17,17 @@ Open the address it prints (usually http://localhost:5173).
 
 Almost everything you see lives in `src/data.js`:
 
-- `profile`: your name, degree, and links. Replace the email placeholder.
+- `profile` and `themes`: your name, email, links, and the list of looks. The first theme in the list is the default one visitors see. If you change the default, also change `'manga'` in the small script at the top of `index.html`.
 - `hero`, `about`, `toolkit`, `certifications`: the top of the page.
 - `experience`: your jobs. Add a `role` or `when` to any entry to show a title or dates.
 - `paper`: the published paper and its citation.
 - `project`, `pipelineSteps`, `methods`: the Causify study.
+- `benchmarkProject` and `benchmark`: the agent benchmark, its five agents, and the F1 scores behind the chart.
+- `forecastingProject`: the Transformer forecasting project.
 - `dag`: the causal diagram. The nodes there are illustrative. Replace them with the team's final diagram, then set `illustrative` to `false` to remove the draft note.
 - `fun` and `carBuild`: the "Off the clock" section. Add favorite shows or teams to the `favorites` lists, and flip `done` to `true` as you hit each car-build stage.
 
-Colors and fonts are at the top of `src/styles.css`.
+The three looks (Manga, Pit wall, Graph paper) are blocks of colors, fonts, and borders at the top of `src/styles.css`. Visitors switch between them with the buttons in the header, and the site remembers their choice. The chart colors in each look were checked for color-blind safety and contrast, so re-check them if you change them.
 
 ## Put it on GitHub Pages
 

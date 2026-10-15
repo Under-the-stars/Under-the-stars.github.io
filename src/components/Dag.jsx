@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 
-const W = 160
+const W = 176
 const H = 44
 const HALF_W = W / 2
 const HALF_H = H / 2

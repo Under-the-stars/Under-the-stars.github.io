@@ -1,11 +1,15 @@
+import { useEffect, useState } from 'react'
 import Dag from './components/Dag.jsx'
 import Pipeline from './components/Pipeline.jsx'
 import RetryDemo from './components/RetryDemo.jsx'
 import LightsOut from './components/LightsOut.jsx'
 import CarBuild from './components/CarBuild.jsx'
 import Citation from './components/Citation.jsx'
+import Benchmark from './components/Benchmark.jsx'
+import ThemeSwitcher from './components/ThemeSwitcher.jsx'
 import {
   profile,
+  themes,
   hero,
   about,
   toolkit,
@@ -13,12 +17,16 @@ import {
   certifications,
   experience,
   retryCaption,
+  researchIndex,
   paper,
   project,
   pipelineSteps,
   dag,
   roles,
   methods,
+  benchmarkProject,
+  benchmark,
+  forecastingProject,
   fun,
   carBuild,
   contact,
@@ -42,18 +50,38 @@ function Job({ job }) {
   )
 }
 
-function Favorites({ items }) {
+function Tags({ items, label }) {
   if (!items || items.length === 0) return null
   return (
-    <ul className="tags" aria-label="Favorites">
-      {items.map((f) => (
-        <li key={f}>{f}</li>
+    <ul className="tags" aria-label={label}>
+      {items.map((t) => (
+        <li key={t}>{t}</li>
       ))}
     </ul>
   )
 }
 
+const themeIds = themes.map((t) => t.id)
+
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    const current = document.documentElement.dataset.theme
+    return themeIds.includes(current) ? current : themes[0].id
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
+
+  const chooseTheme = (id) => {
+    setTheme(id)
+    try {
+      localStorage.setItem('theme', id)
+    } catch {
+      // storage can be blocked; the choice just won't be remembered
+    }
+  }
+
   return (
     <>
       <header className="site-header">
@@ -67,6 +95,7 @@ export default function App() {
           <a href="#fun">Off the clock</a>
           <a href="#contact">Contact</a>
         </nav>
+        <ThemeSwitcher themes={themes} value={theme} onChange={chooseTheme} />
       </header>
 
       <main id="top">
@@ -95,18 +124,10 @@ export default function App() {
             ))}
           </div>
           <h3 className="mini">Toolkit</h3>
-          <ul className="tags" aria-label="Toolkit">
-            {toolkit.map((t) => (
-              <li key={t}>{t}</li>
-            ))}
-          </ul>
+          <Tags items={toolkit} label="Toolkit" />
           <p className="muted note">{toolkitNote}</p>
           <h3 className="mini">Certified</h3>
-          <ul className="tags" aria-label="Certifications">
-            {certifications.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
+          <Tags items={certifications} label="Certifications" />
         </section>
 
         <section id="experience" className="block">
@@ -138,26 +159,29 @@ export default function App() {
 
         <section id="research" className="block">
           <h2>Research, with citations</h2>
+          <ul className="research-index" aria-label="Jump to a project">
+            {researchIndex.map((r) => (
+              <li key={r.href}>
+                <a href={r.href}>{r.label}</a>
+              </li>
+            ))}
+          </ul>
 
-          <div className="sub first">
+          <div id="paper" className="sub first">
             <h3>{paper.heading}</h3>
             <p className="intro">{paper.blurb}</p>
             <div className="paper">
               <p className="paper-title">{paper.title}</p>
               <p className="muted">{paper.venue}</p>
-              <ul className="tags" aria-label="Keywords">
-                {paper.keywords.map((k) => (
-                  <li key={k}>{k}</li>
-                ))}
-              </ul>
-              <p>
+              <Tags items={paper.keywords} label="Keywords" />
+              <p className="paper-link">
                 <a href={paper.doi}>Read the paper on IEEE Xplore</a>
               </p>
               <Citation text={paper.citation} />
             </div>
           </div>
 
-          <div className="sub">
+          <div id="causify" className="sub">
             <h3>{project.question}</h3>
             <p className="intro">
               {project.summary} It runs {project.period}, remotely.
@@ -178,7 +202,7 @@ export default function App() {
               outcome for each company. Getting there took six steps. Click
               through them to see the numbers.
             </p>
-            <Pipeline steps={pipelineSteps} />
+            <Pipeline steps={pipelineSteps} name="dataset" label="Dataset steps" />
 
             <h4 className="minor">How we test it</h4>
             <p className="intro">
@@ -196,11 +220,59 @@ export default function App() {
                 </article>
               ))}
             </div>
-            <ul className="tags" aria-label="Research skills and tools">
-              {project.tags.map((t) => (
-                <li key={t}>{t}</li>
+            <Tags items={project.tags} label="Research skills and tools" />
+          </div>
+
+          <div id="benchmark" className="sub">
+            <h3>{benchmarkProject.title}</h3>
+            <p className="muted project-tag">{benchmarkProject.tag}</p>
+            <p className="intro">{benchmarkProject.blurb}</p>
+
+            <h4 className="minor">What I wanted to know</h4>
+            <ul className="plain-list">
+              {benchmarkProject.questions.map((q) => (
+                <li key={q}>{q}</li>
               ))}
             </ul>
+
+            <h4 className="minor">The five agents</h4>
+            <p className="intro">{benchmarkProject.agentsIntro}</p>
+            <Pipeline
+              steps={benchmarkProject.agents}
+              name="agents"
+              label="Agents in order"
+            />
+
+            <h4 className="minor">Head to head</h4>
+            <p className="intro">{benchmarkProject.datasetsNote}</p>
+            <Benchmark data={benchmark} />
+
+            <h4 className="minor">What I found</h4>
+            <ul className="plain-list">
+              {benchmarkProject.findings.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+            <Tags items={benchmarkProject.tags} label="Tools used" />
+            <p className="paper-link">
+              <a href={benchmarkProject.repo}>See the code on GitHub</a>
+            </p>
+          </div>
+
+          <div id="forecasting" className="sub">
+            <h3>{forecastingProject.title}</h3>
+            <p className="muted project-tag">{forecastingProject.tag}</p>
+            <p className="intro">{forecastingProject.blurb}</p>
+            <ul className="plain-list">
+              {forecastingProject.points.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+            <p className="muted">{forecastingProject.note}</p>
+            <Tags items={forecastingProject.tags} label="Tools used" />
+            <p className="paper-link">
+              <a href={forecastingProject.repo}>See the code on GitHub</a>
+            </p>
           </div>
         </section>
 
@@ -212,13 +284,13 @@ export default function App() {
             <article className="fun-block">
               <h3>{fun.anime.title}</h3>
               <p>{fun.anime.text}</p>
-              <Favorites items={fun.anime.favorites} />
+              <Tags items={fun.anime.favorites} label="Favorites" />
             </article>
 
-            <article className="fun-block wide">
+            <article className="fun-block">
               <h3>{fun.f1.title}</h3>
               <p>{fun.f1.text}</p>
-              <Favorites items={fun.f1.favorites} />
+              <Tags items={fun.f1.favorites} label="Favorites" />
               <LightsOut />
             </article>
 
@@ -235,7 +307,7 @@ export default function App() {
         <h2>Say hello</h2>
         <p>{contact}</p>
         <p className="links">
-          <a href={profile.links.email}>Email</a>
+          <a href={profile.links.email}>{profile.email}</a>
           <a href={profile.links.linkedin}>LinkedIn</a>
           <a href={profile.links.github}>GitHub</a>
         </p>

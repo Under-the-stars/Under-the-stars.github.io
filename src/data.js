@@ -1,15 +1,25 @@
 // All the words and numbers on the site live here.
 // Edit this file to change the content. No need to touch the components.
 
+const email = 'shobhs.gupta.02@gmail.com'
+
 export const profile = {
   name: 'Shobha Gupta',
   degree: 'MS in Data Science, University of Maryland',
+  email,
   links: {
     github: 'https://github.com/Under-the-stars',
     linkedin: 'https://www.linkedin.com/in/shobha-gupta-572396268/',
-    email: 'mailto:shobhs.gupta.02@gmail.com', // TODO: replace with your email
+    email: `mailto:${email}`,
   },
 }
+
+// The first theme is the default. Visitors can switch with the buttons in the header.
+export const themes = [
+  { id: 'manga', name: 'Manga' },
+  { id: 'pit', name: 'Pit wall' },
+  { id: 'graph', name: 'Graph paper' },
+]
 
 export const hero = {
   headline: 'I build AI agents that do the boring work so humans don’t have to.',
@@ -304,6 +314,119 @@ export const carBuild = [
   { label: 'Find a garage and some questionable tools', done: false },
   { label: 'Build the thing', done: false },
 ]
+
+// Research projects from GitHub. Numbers come from the project README.
+export const researchIndex = [
+  { href: '#paper', label: 'Published paper' },
+  { href: '#causify', label: 'Founder age study' },
+  { href: '#benchmark', label: 'Agent benchmark' },
+  { href: '#forecasting', label: 'Transformer forecasting' },
+]
+
+export const benchmarkProject = {
+  title: 'Do agents that check each other’s work beat one-shot AI?',
+  tag: 'Course project, DATA605, University of Maryland, Spring 2026',
+  repo: 'https://github.com/Under-the-stars/Benchmarking-in-Agentic-Reasoning-for-Data-Science-',
+  blurb:
+    'I built a five-agent data science system in LangGraph and pitted it against a single-agent assistant and AutoML. First on clean data, then on data I deliberately broke.',
+  questions: [
+    'Does a cycle of specialized agents make fewer hallucinations and logic errors than a single agent?',
+    'Does a reviewer node produce more reliable results than one-shot generation?',
+    'How do the different setups recover from corrupted or ambiguous data?',
+  ],
+  agentsIntro:
+    'Five agents pass the work along, and the fourth one is allowed to say no. Click through them.',
+  agents: [
+    {
+      id: 'planner',
+      title: 'Planner',
+      text: 'Reads the schema, decides what kind of problem this is, and lists what could go wrong. Runs on Llama 3.2.',
+    },
+    {
+      id: 'eda',
+      title: 'EDA Analyst',
+      text: 'Cleans the data, handles missing values, and hunts for outliers.',
+    },
+    {
+      id: 'architect',
+      title: 'ML Architect',
+      text: 'Trains Random Forest, Logistic Regression, and Gradient Boosting models and keeps the best one by F1.',
+    },
+    {
+      id: 'reviewer',
+      title: 'Quality Reviewer',
+      text: 'The one who says no. It checks recall, uses SHAP to look for target leakage, and flags impossible values. A single feature carrying more than 95% of the SHAP importance counts as leakage. If something is off, the work goes back to the ML Architect or the EDA Analyst. If not, it moves on.',
+    },
+    {
+      id: 'writer',
+      title: 'Report Writer',
+      text: 'Writes the final report, including the mistakes that got caught and how they were fixed.',
+    },
+  ],
+  datasetsNote:
+    'Three datasets: Heart Disease (303 patients), NYC Yellow Taxi (sampled to 50K trips), and Amazon Beauty Reviews (sampled to 50K reviews).',
+  findings: [
+    'On clean data, LangGraph matched or beat both baselines on every dataset.',
+    'On broken data, it lost less. With 15% of labels flipped and 5% impossible values added, it stayed ahead of the single agent on all three datasets. My read: the Quality Reviewer catches errors before the report gets written.',
+    'Leakage is sneaky. On NYC Taxi, payment_type gave away the tipping answer, and taking it out dropped performance sharply.',
+    'SHAP showed what the models leaned on, from heart rate and chest pain type on Heart Disease to title length on Amazon reviews.',
+  ],
+  tags: [
+    'LangGraph',
+    'Llama 3.2',
+    'Ollama',
+    'SHAP',
+    'AutoGluon',
+    'Random Forest',
+    'Gradient Boosting',
+    'Docker',
+  ],
+}
+
+// F1 scores in percent, in the same order as `datasets`.
+export const benchmark = {
+  datasets: ['Heart Disease', 'NYC Taxi', 'Amazon Reviews'],
+  systems: [
+    { id: 'langgraph', name: 'LangGraph agents', short: 'LangGraph', color: '--s1' },
+    { id: 'single', name: 'Single agent (ChatGPT Advanced Data Analysis)', short: 'Single agent', color: '--s2' },
+    { id: 'autogluon', name: 'AutoGluon', short: 'AutoGluon', color: '--s3' },
+  ],
+  scenarios: {
+    clean: {
+      label: 'Clean data',
+      note: 'F1 score on each dataset as it came.',
+      values: {
+        langgraph: [88.14, 89.41, 83.27],
+        single: [88.14, 88.42, 76.75],
+        autogluon: [73.08, 89.27, 82.74],
+      },
+    },
+    messy: {
+      label: 'Broken data',
+      note: 'F1 score after flipping 15% of labels and adding 5% impossible values. This comparison covers LangGraph and the single agent.',
+      values: {
+        langgraph: [68.0, 83.56, 78.82],
+        single: [58.33, 81.28, 70.49],
+      },
+    },
+  },
+}
+
+export const forecastingProject = {
+  title: 'Forecasting stock prices with a Transformer',
+  tag: 'Course project, Fall 2025',
+  repo: 'https://github.com/Under-the-stars/Time-Series-Forecasting-with-Transformers-',
+  blurb:
+    'A Transformer built in JAX and Flax that forecasts stock prices from historical data, with Amazon’s daily prices as the worked example.',
+  points: [
+    'Uses self-attention to pick up patterns across time instead of looking at one day at a time.',
+    'Builds time-series sequences, splits train and test, tunes hyperparameters, and forecasts several steps ahead.',
+    'Evaluated with metrics like mean absolute error, plus plots of predictions against actual prices.',
+    'Packaged with Docker, notebooks, and API docs so it runs the same everywhere.',
+  ],
+  note: 'Not financial advice. Please do not fund your retirement with a course project.',
+  tags: ['JAX', 'Flax', 'Transformers', 'Time series', 'Python', 'Docker', 'Jupyter'],
+}
 
 export const contact =
   'Happy to chat about agents, data, or why your spreadsheet shouldn’t be someone’s full-time job.'

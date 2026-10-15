@@ -1,21 +1,29 @@
 import { useState } from 'react'
 
-export default function Pipeline({ steps }) {
+// Click-through steps. `name` keeps element ids unique when the page has
+// more than one of these. A step's `stat` and `unit` are optional.
+export default function Pipeline({ steps, name = 'pipeline', label = 'Steps' }) {
   const [active, setActive] = useState(0)
   const step = steps[active]
   const last = steps.length - 1
+  const panelId = `${name}-panel`
 
   return (
     <div className="pipeline">
-      <ol className="steps" role="tablist" aria-label="Pipeline steps">
+      <ol
+        className="steps"
+        role="tablist"
+        aria-label={label}
+        style={{ '--cols': steps.length }}
+      >
         {steps.map((s, i) => (
           <li key={s.id}>
             <button
               type="button"
               role="tab"
-              id={`tab-${s.id}`}
+              id={`${name}-tab-${s.id}`}
               aria-selected={i === active}
-              aria-controls="step-panel"
+              aria-controls={panelId}
               className={`step${i === active ? ' active' : ''}${
                 i < active ? ' done' : ''
               }`}
@@ -30,15 +38,19 @@ export default function Pipeline({ steps }) {
 
       <div
         className="step-panel"
-        id="step-panel"
+        id={panelId}
         role="tabpanel"
-        aria-labelledby={`tab-${step.id}`}
+        aria-labelledby={`${name}-tab-${step.id}`}
         aria-live="polite"
       >
-        <div className="stat">
-          <span className="stat-num">{step.stat}</span>
-          <span className="stat-unit">{step.unit}</span>
-        </div>
+        {step.stat ? (
+          <div className="stat">
+            <span className="stat-num">{step.stat}</span>
+            <span className="stat-unit">{step.unit}</span>
+          </div>
+        ) : (
+          <h5 className="step-heading">{step.title}</h5>
+        )}
         <p>{step.text}</p>
         <div className="step-nav">
           <button
