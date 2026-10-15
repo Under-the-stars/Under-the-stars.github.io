@@ -5,10 +5,110 @@ export const profile = {
   name: 'Shobha Gupta',
   degree: 'MS in Data Science, University of Maryland',
   links: {
-    github: 'https://github.com/Under-the-stars', 
+    github: 'https://github.com/Under-the-stars',
     linkedin: 'https://www.linkedin.com/in/shobha-gupta-572396268/',
-    email: 'mailto:shobhs.gupta.02@gmail.com', 
+    email: 'mailto:YOUR-EMAIL@example.com', // TODO: replace with your email
   },
+}
+
+export const hero = {
+  headline: 'I build AI agents that do the boring work so humans don’t have to.',
+  subline:
+    'Mine retry before they complain, which is more than I can say for most of us.',
+  intro:
+    'Junior AI Engineer at Momenttext, researcher at Causify, and owner of an MS in Data Science from the University of Maryland.',
+}
+
+export const about = [
+  'I’m a Junior AI Engineer at Momenttext, where I built a seven-agent LangGraph pipeline that turns messy, multilingual meeting transcripts into clean, structured reports. It cut manual documentation effort by 80 to 90%. Every step is checked against a strict schema, so bad outputs get sent back instead of sneaking through. Silent failures are my mortal enemy.',
+  'Before that, I wrangled 5M+ real estate records at Square Yards, built forecasting models and dashboards at Gxpress, and taught as a TA at the University of Maryland while earning my MS in Data Science. I also fine-tuned an image model on jewelry prompts, which got published at IEEE CONIT 2024, because apparently I like making computers do fancy things.',
+  'I’m most useful when the problem is messy, the data is worse, and someone asks, “Can we automate this?”',
+]
+
+export const toolkit = [
+  'Python',
+  'SQL',
+  'LangGraph',
+  'LangChain',
+  'RAG',
+  'PyTorch',
+  'Docker',
+]
+
+export const toolkitNote = 'Plus a healthy distrust of any output nobody validated.'
+
+export const certifications = ['Microsoft PL-300', 'Microsoft DP-700']
+
+// Add a role title or dates to any job by adding `role` or `when`.
+export const experience = {
+  now: [
+    {
+      org: 'Momenttext',
+      role: 'Junior AI Engineer',
+      quip: 'Seven agents, one pipeline, zero tolerance for silent failures.',
+      points: [
+        'Built a seven-agent LangGraph pipeline that turns messy, multilingual meeting transcripts into clean, structured reports.',
+        'Cut manual documentation effort by 80 to 90%.',
+        'Checks every step against a strict schema, so bad outputs get sent back instead of sneaking through.',
+      ],
+    },
+    {
+      org: 'Causify',
+      role: 'Researcher',
+      when: 'Aug 2026 to present',
+      quip: 'Asking whether founder age drives startup success, with causal inference instead of vibes.',
+      points: [
+        'Designed the causal diagram that separates confounders from mediators, and planned the matching and sensitivity checks.',
+        'Built the data pipeline behind the study, from raw company data to founder-level records.',
+        'Delivered the dataset through reviewed pull requests, with a README and a data-generation writeup.',
+      ],
+    },
+  ],
+  before: [
+    {
+      org: 'Square Yards',
+      quip: 'Five million rows walk into a database, and every one has opinions about formatting.',
+      points: ['Wrangled 5M+ real estate records.'],
+    },
+    {
+      org: 'Gxpress',
+      quip: 'Forecasting is just guessing with better manners.',
+      points: ['Built forecasting models and dashboards.'],
+    },
+    {
+      org: 'University of Maryland',
+      role: 'Graduate teaching assistant',
+      quip: 'Taught statistics on purpose.',
+      points: [
+        'TA for Statistics for Information Science, while earning my MS in Data Science.',
+      ],
+    },
+  ],
+}
+
+// Steps of the retry demo are in the component. This is just the caption.
+export const retryCaption =
+  'A simplified sketch. The real pipeline has seven agents and stronger opinions.'
+
+export const paper = {
+  heading: 'Teaching a diffusion model about jewelry',
+  title:
+    'Revolutionizing Jewellery Design through Stable Diffusion Model: Bridging the Gap between Consumer Preferences and Designer Creativity',
+  venue:
+    '2024 4th International Conference on Intelligent Technologies (CONIT), Bangalore, India',
+  doi: 'https://doi.org/10.1109/CONIT61985.2024.10626785',
+  blurb:
+    'I fine-tuned an image model on jewelry prompts, so what customers describe and what designers imagine can meet somewhere in the middle. It got published at IEEE CONIT 2024.',
+  keywords: [
+    'Stable Diffusion',
+    'LoRA',
+    'Text-to-image',
+    'Diffusion models',
+    'Generative AI',
+    'Transfer learning',
+  ],
+  citation:
+    'S. Gupta, S. Vishwakarma and K. Srivastava, "Revolutionizing Jewellery Design through Stable Diffusion Model: Bridging the Gap between Consumer Preferences and Designer Creativity," 2024 4th International Conference on Intelligent Technologies (CONIT), Bangalore, India, 2024, pp. 1-8, doi: 10.1109/CONIT61985.2024.10626785.',
 }
 
 export const project = {
@@ -175,9 +275,35 @@ export const methods = [
   },
 ]
 
-export const role = [
-  'Designed the DAG to separate confounders from mediators, and planned the matching and sensitivity checks.',
-  'Built the data pipeline that merges Crunchbase and Y Combinator data and produces founder-level records.',
-  'Sourced, cleaned, and verified founder LinkedIn profiles, and checked the status of every company.',
-  'Delivered the dataset through reviewed pull requests, with a README and a data-generation writeup.',
+// Off the clock. Add favorites to the lists below and they show up on the page.
+export const fun = {
+  heading: 'Off the clock',
+  intro: 'When I’m not making computers do fancy things, this is where my time goes.',
+  anime: {
+    title: 'Anime',
+    text: 'I watch a lot of it. Anime taught me that every hard problem is a boss fight, every boss fight comes with a training arc, and nothing important gets solved in the first episode. I debug the same way.',
+    favorites: [], // e.g. ['Show one', 'Show two']
+  },
+  f1: {
+    title: 'Formula 1',
+    text: 'Huge fan. It’s engineering, data, and strategy at 300 km/h, with a call from the pit wall that looks like genius or a disaster depending on the final lap. Think you have the reflexes? Five lights, then nothing, then go.',
+    favorites: [], // e.g. ['Team', 'Driver']
+  },
+  cars: {
+    title: 'Cars',
+    text: 'I love cars, and one day I want to build one myself. Right now the ambition is a few steps ahead of the toolbox, which is a perfectly good place to start.',
+  },
+}
+
+// Flip `done` to true as you hit each stage.
+export const carBuild = [
+  { label: 'Decide that I’m going to build a car', done: true },
+  { label: 'Watch F1 races, strictly for research', done: true },
+  { label: 'Learn how an engine actually works', done: false },
+  { label: 'Sketch the first design', done: false },
+  { label: 'Find a garage and some questionable tools', done: false },
+  { label: 'Build the thing', done: false },
 ]
+
+export const contact =
+  'Happy to chat about agents, data, or why your spreadsheet shouldn’t be someone’s full-time job.'

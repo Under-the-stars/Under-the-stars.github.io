@@ -1,6 +1,6 @@
 # Portfolio site
 
-A small interactive portfolio built with Vite and React. It features the Causify research project on whether founder age drives startup success, with a clickable causal diagram and a step-by-step view of the data pipeline.
+A personal site built with Vite and React. It has an intro, experience, research (a published paper and the Causify study, with a clickable causal diagram and a step-by-step data pipeline), and an "Off the clock" section with an F1 reaction game and a car build log.
 
 ## Run it on your computer
 
@@ -17,11 +17,13 @@ Open the address it prints (usually http://localhost:5173).
 
 Almost everything you see lives in `src/data.js`:
 
-- `profile`: your name, degree, and links. Replace the GitHub and email placeholders.
-- `project`: the headline question, summary, and tags.
-- `pipelineSteps`: the dataset steps and numbers.
+- `profile`: your name, degree, and links. Replace the email placeholder.
+- `hero`, `about`, `toolkit`, `certifications`: the top of the page.
+- `experience`: your jobs. Add a `role` or `when` to any entry to show a title or dates.
+- `paper`: the published paper and its citation.
+- `project`, `pipelineSteps`, `methods`: the Causify study.
 - `dag`: the causal diagram. The nodes there are illustrative. Replace them with the team's final diagram, then set `illustrative` to `false` to remove the draft note.
-- `methods` and `role`: the methods and your contributions.
+- `fun` and `carBuild`: the "Off the clock" section. Add favorite shows or teams to the `favorites` lists, and flip `done` to `true` as you hit each car-build stage.
 
 Colors and fonts are at the top of `src/styles.css`.
 
