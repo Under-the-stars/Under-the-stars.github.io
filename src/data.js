@@ -5,9 +5,9 @@ export const profile = {
   name: 'Shobha Gupta',
   degree: 'MS in Data Science, University of Maryland',
   links: {
-    github: 'https://github.com/YOUR-USERNAME', // TODO: replace
+    github: 'https://github.com/Under-the-stars', 
     linkedin: 'https://www.linkedin.com/in/shobha-gupta-572396268/',
-    email: 'mailto:YOUR-EMAIL@example.com', // TODO: replace
+    email: 'mailto:shobhs.gupta.02@gmail.com', 
   },
 }
 
