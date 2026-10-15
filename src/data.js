@@ -7,7 +7,7 @@ export const profile = {
   links: {
     github: 'https://github.com/Under-the-stars',
     linkedin: 'https://www.linkedin.com/in/shobha-gupta-572396268/',
-    email: 'mailto:YOUR-EMAIL@example.com', // TODO: replace with your email
+    email: 'mailto:shobhs.gupta.02@gmail.com', // TODO: replace with your email
   },
 }
 
