@@ -14,13 +14,6 @@ export const profile = {
   },
 }
 
-// The first theme is the default. Visitors can switch with the buttons in the header.
-export const themes = [
-  { id: 'manga', name: 'Manga' },
-  { id: 'pit', name: 'Pit wall' },
-  { id: 'graph', name: 'Graph paper' },
-]
-
 export const hero = {
   headline: 'I build AI agents that do the boring work so humans don’t have to.',
   subline:

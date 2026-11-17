@@ -1,150 +1,11 @@
 /* ------------------------------------------------------------------
-   Themes. Everything below reads these tokens, so a theme is just a
-   block of values. Pick the default in index.html and src/data.js.
-   Chart series colors (--s1 to --s3) were checked with a CVD and
-   contrast validator for each theme.
+   Colors, fonts, and borders live here as tokens. Everything below
+   reads them. Chart series colors (--s1 to --s3) were checked with a
+   color-blind and contrast validator in both light and dark.
 ------------------------------------------------------------------- */
 
-/* Manga: ink on paper, thick panel borders, hard shadows, speed lines */
-:root,
-:root[data-theme='manga'] {
-  color-scheme: light;
-
-  --paper: #fbfaf5;
-  --panel: #ffffff;
-  --grid: #e6e4da;
-  --ink: #111111;
-  --muted: #4f4f4f;
-  --line: #cfcdc4;
-  --edge: #111111;
-
-  --treatment: #1f4bff;
-  --outcome: #d98a00;
-  --confounder: #0f8a5f;
-  --mediator: #a3237a;
-  --red: #e4202a;
-
-  --s1: #1f4bff;
-  --s2: #d98a00;
-  --s3: #a3237a;
-
-  --accent: #e4202a;
-  --on-accent: #ffffff;
-  --accent-hover: #b3131b;
-  --link: #1f3fd0;
-
-  --display: 'Anton', Impact, 'Arial Narrow Bold', sans-serif;
-  --label: 'Zen Kaku Gothic New', 'Helvetica Neue', Arial, sans-serif;
-  --body: 'Zen Kaku Gothic New', 'Helvetica Neue', Arial, sans-serif;
-  --h-weight: 400;
-  --h-track: 0.01em;
-  --h1-shadow: 3px 3px 0 var(--red);
-  --label-weight: 700;
-  --italic: normal;
-  --body-lh: 1.75;
-
-  --bw: 3px;
-  --radius: 0;
-  --radius-s: 0;
-  --pill: 0;
-  --shadow: 6px 6px 0 var(--ink);
-  --btn-bw: 2px;
-  --btn-shadow: 3px 3px 0 var(--ink);
-  --btn-press: translate(2px, 2px);
-  --tag-bw: 2px;
-  --tag-edge: var(--ink);
-  --bar-w: 6px;
-  --bar-outline: inset 0 0 0 2px var(--ink);
-  --rule: 3px solid var(--ink);
-  --rule-soft: 2px dashed var(--ink);
-  --h2-rule: 8px solid var(--red);
-  --header-rule: 3px solid var(--ink);
-  --node-bw: 3px;
-  --node-font: 14px;
-
-  --hero-size: clamp(2.7rem, 7.4vw, 5.6rem);
-  --hero-max: none;
-  --hero-lh: 1.02;
-  --bg-image: radial-gradient(circle, rgba(17, 17, 17, 0.09) 1.1px, transparent 1.6px);
-  --bg-size: 14px 14px;
-  --hero-bg: repeating-conic-gradient(
-    from 0deg at 88% 45%,
-    #111 0deg 0.8deg,
-    transparent 0.8deg 5deg
-  );
-  --hero-bg-opacity: 0.16;
-  --hero-mask: radial-gradient(circle at 88% 45%, transparent 0 14%, #000 34%, transparent 80%);
-}
-
-/* Pit wall: carbon, telemetry grid, F1 red */
-:root[data-theme='pit'] {
-  color-scheme: dark;
-
-  --paper: #0d1114;
-  --panel: #151a1f;
-  --grid: #232b31;
-  --ink: #eaeff2;
-  --muted: #9aa7ae;
-  --line: #2b353c;
-  --edge: #3a464e;
-
-  --treatment: #4cc9ff;
-  --outcome: #ffb81c;
-  --confounder: #3ddc97;
-  --mediator: #ff7ab8;
-  --red: #ff3b30;
-
-  --s1: #2f9fd8;
-  --s2: #bf8700;
-  --s3: #d0568f;
-
-  --accent: #e10600;
-  --on-accent: #ffffff;
-  --accent-hover: #ff3b30;
-  --link: #6fd3ff;
-
-  --display: 'Titillium Web', 'Helvetica Neue', Arial, sans-serif;
-  --label: 'Titillium Web', 'Helvetica Neue', Arial, sans-serif;
-  --body: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
-  --h-weight: 700;
-  --h-track: 0;
-  --h1-shadow: none;
-  --label-weight: 600;
-  --italic: normal;
-  --body-lh: 1.65;
-
-  --bw: 1px;
-  --radius: 4px;
-  --radius-s: 3px;
-  --pill: 4px;
-  --shadow: none;
-  --btn-bw: 1px;
-  --btn-shadow: none;
-  --btn-press: none;
-  --tag-bw: 1px;
-  --tag-edge: var(--edge);
-  --bar-w: 4px;
-  --bar-outline: none;
-  --rule: 1px solid var(--line);
-  --rule-soft: 1px dashed var(--edge);
-  --h2-rule: 4px solid var(--red);
-  --header-rule: 1px solid var(--line);
-  --node-bw: 2px;
-
-  --hero-size: clamp(2.3rem, 6.4vw, 4.4rem);
-  --hero-max: 20ch;
-  --hero-lh: 1.05;
-  --bg-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  --bg-size: 48px 48px;
-  --hero-bg: repeating-conic-gradient(#fff 0 25%, transparent 0 50%) 0 0 / 30px 30px;
-  --hero-bg-opacity: 0.07;
-  --hero-mask: radial-gradient(circle at 90% 40%, #000 0, transparent 60%);
-}
-
-/* Graph paper: quiet and clean, follows the system light or dark setting */
-:root[data-theme='graph'] {
+/* Graph paper look. Follows the system light or dark setting. */
+:root {
   color-scheme: light;
 
   --paper: #f2f5f3;
@@ -211,7 +72,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root[data-theme='graph'] {
+  :root {
     color-scheme: dark;
 
     --paper: #12191c;
@@ -346,44 +207,6 @@ main,
 .site-header nav a:hover {
   color: var(--ink);
   text-decoration: underline;
-}
-
-/* Theme switcher */
-
-.theme-switch {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.theme-label {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-right: 0.15rem;
-}
-
-.theme-btn {
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--ink);
-  background: transparent;
-  border: var(--tag-bw) solid var(--tag-edge);
-  border-radius: var(--pill);
-  padding: 0.2rem 0.75rem;
-  cursor: pointer;
-  line-height: 1.4;
-}
-
-.theme-btn:hover {
-  border-color: var(--ink);
-}
-
-.theme-btn.on {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
 }
 
 /* Hero */
@@ -668,32 +491,6 @@ main,
 .quip {
   font-style: var(--italic);
   margin: 0.4rem 0 0.6rem;
-}
-
-:root[data-theme='manga'] .quip,
-:root:not([data-theme]) .quip {
-  position: relative;
-  display: inline-block;
-  background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 14px;
-  box-shadow: 3px 3px 0 var(--ink);
-  padding: 0.4rem 0.9rem;
-  margin: 0.9rem 0 0.9rem 0.25rem;
-}
-
-:root[data-theme='manga'] .quip::before,
-:root:not([data-theme]) .quip::before {
-  content: '';
-  position: absolute;
-  top: -9px;
-  left: 22px;
-  width: 14px;
-  height: 14px;
-  background: #fff;
-  border-left: 2px solid var(--ink);
-  border-top: 2px solid var(--ink);
-  transform: rotate(45deg);
 }
 
 .job ul {

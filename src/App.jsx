@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Dag from './components/Dag.jsx'
 import Pipeline from './components/Pipeline.jsx'
 import RetryDemo from './components/RetryDemo.jsx'
@@ -6,10 +5,8 @@ import LightsOut from './components/LightsOut.jsx'
 import CarBuild from './components/CarBuild.jsx'
 import Citation from './components/Citation.jsx'
 import Benchmark from './components/Benchmark.jsx'
-import ThemeSwitcher from './components/ThemeSwitcher.jsx'
 import {
   profile,
-  themes,
   hero,
   about,
   toolkit,
@@ -61,27 +58,7 @@ function Tags({ items, label }) {
   )
 }
 
-const themeIds = themes.map((t) => t.id)
-
 export default function App() {
-  const [theme, setTheme] = useState(() => {
-    const current = document.documentElement.dataset.theme
-    return themeIds.includes(current) ? current : themes[0].id
-  })
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
-  }, [theme])
-
-  const chooseTheme = (id) => {
-    setTheme(id)
-    try {
-      localStorage.setItem('theme', id)
-    } catch {
-      // storage can be blocked; the choice just won't be remembered
-    }
-  }
-
   return (
     <>
       <header className="site-header">
@@ -95,7 +72,6 @@ export default function App() {
           <a href="#fun">Off the clock</a>
           <a href="#contact">Contact</a>
         </nav>
-        <ThemeSwitcher themes={themes} value={theme} onChange={chooseTheme} />
       </header>
 
       <main id="top">

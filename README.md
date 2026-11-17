@@ -17,7 +17,7 @@ Open the address it prints (usually http://localhost:5173).
 
 Almost everything you see lives in `src/data.js`:
 
-- `profile` and `themes`: your name, email, links, and the list of looks. The first theme in the list is the default one visitors see. If you change the default, also change `'manga'` in the small script at the top of `index.html`.
+- `profile`: your name, email, and links.
 - `hero`, `about`, `toolkit`, `certifications`: the top of the page.
 - `experience`: your jobs. Add a `role` or `when` to any entry to show a title or dates.
 - `paper`: the published paper and its citation.
@@ -27,7 +27,7 @@ Almost everything you see lives in `src/data.js`:
 - `dag`: the causal diagram. The nodes there are illustrative. Replace them with the team's final diagram, then set `illustrative` to `false` to remove the draft note.
 - `fun` and `carBuild`: the "Off the clock" section. Add favorite shows or teams to the `favorites` lists, and flip `done` to `true` as you hit each car-build stage.
 
-The three looks (Manga, Pit wall, Graph paper) are blocks of colors, fonts, and borders at the top of `src/styles.css`. Visitors switch between them with the buttons in the header, and the site remembers their choice. The chart colors in each look were checked for color-blind safety and contrast, so re-check them if you change them.
+The look (graph paper, with automatic light and dark) is a set of colors, fonts, and borders at the top of `src/styles.css`. The chart colors were checked for color-blind safety and contrast, so re-check them if you change them.
 
 ## Put it on GitHub Pages
 
